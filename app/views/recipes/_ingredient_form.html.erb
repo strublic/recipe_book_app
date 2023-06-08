@@ -1,0 +1,10 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Ingrediente", required: true %>
+    <%= f.label :measure %>
+    <%= f.text_field :name, placeholder: "Medida", required: true %>
+    <%= f.label :measure_type %>
+    <%= f.text_field :name, placeholder: "Tipo de medida", required: true %>
+    <button type="button" data-action="nested-form#remove">Remove todo</button>
+    <%= f.hidden_field :_destroy %>
+</div>

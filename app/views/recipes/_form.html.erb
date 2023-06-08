@@ -1,4 +1,7 @@
-<%= form_with(model: @recipe) do |form| %>
+<%= form_with(model: @recipe, data: {
+    controller: "nested-form",
+    nested_form_wrapper_selector_value: '.nested-form-wrapper'
+  }) do |form| %>
     <% if @recipe.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this @recipe from being saved:</h2>
@@ -20,6 +23,23 @@
       <%= form.label :body, style: "display: block" %>
       <%= form.text_area :body %>
     </div>
+  
+    <template data-nested-form-target="template">
+      <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
+        <%= render "ingredient_form", f: ingredient_fields %>
+      <% end %>
+    </template>
+  
+    <%= form.fields_for :ingredients do |ingredient_fields| %>
+      <%= render "ingredient_form", f: ingredient_fields %>
+    <% end %>
+  
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+  
+    <button type="button" data-action="nested-form#add">Add task</button>
+  
+    <%#= f.submit 'Save tasks' %>
   
     <div>
       <%= form.submit %>
