@@ -1,0 +1,20 @@
+<div>
+    <h1><%= @recipe.name %></h1>
+    <h3><%= @recipe.body %></h3>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <% @recipe.ingredients.each do |item| %>
+            <li><%= item.measure %> <%= item.measure_type %>: <%= item.name %></li>
+        <% end %>
+    </ul>
+
+    <h2>Modo de preparo</h2>
+    <ul>
+        <% @recipe.method_steps.each do |item| %>
+            <li><%= item.step %></li>
+        <% end %>
+    </ul>
+
+    <%= link_to "Voltar", root_path %>
+</div>
