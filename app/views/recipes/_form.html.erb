@@ -22,26 +22,50 @@
 
       <!-- Ingredients form -->
       <h5>Ingredientes</h5>
+      <div data-controller="nested-form" data-nested-form-wrapper-selector-value=".nested-form-wrapper">
+        <!-- <div class="form-row"> -->
+          <template data-nested-form-target="template">
+            <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
+              <%= render "ingredient_form", f: ingredient_fields %>
+            <% end %>
+          </template>
 
-      <div class="form-row">
-        <template data-nested-form-target="template">
-          <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
+          <%= form.fields_for :ingredients do |ingredient_fields| %>
             <%= render "ingredient_form", f: ingredient_fields %>
+          <% end %>
+          <div data-nested-form-target="target"></div>
+        <!-- </div> -->
+
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <button type="button" data-action="nested-form#add">Add item</button>
+          </div>
+        </div>
+      </div>
+      <!-- end Ingredients form -->
+
+      <!-- Method Steps form -->
+      <h5>Mode de Preparo</h5>
+
+      <!-- <div class="form-row"> -->
+        <template data-nested-form-target="template">
+          <%= form.fields_for :method_steps, MethodStep.new, child_index: 'NEW_RECORD' do |method_step_fields| %>
+            <%= render "method_step_form", f: method_step_fields %>
           <% end %>
         </template>
 
-        <%= form.fields_for :ingredients do |ingredient_fields| %>
-          <%= render "ingredient_form", f: ingredient_fields %>
+        <%= form.fields_for :method_steps do |method_step_fields| %>
+          <%= render "method_step_form", f: method_step_fields %>
         <% end %>
         <div data-nested-form-target="target"></div>
-      </div>
+      <!-- </div> -->
 
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <button type="button" data-action="nested-form#add">Add item</button>
         </div>
       </div>
-      <!-- end Ingredients form -->
+      <!-- end Method Steps form -->
 
       <div class="form-row">
         <div class="col-md-4 mb-3">
