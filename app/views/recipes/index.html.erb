@@ -8,30 +8,37 @@
         </div>
     </div>
 </header>
-<section class="py-5">
-    <div class="row col-lg-3">
-        <div class="text-center">
-            <%= "Não possuimos nenhum receita cadastrada no momento." if @recipes.empty? %>
-        </div>
+<section class="py-5 p-4">
+    <div class="text-center">
+        <%= "Não possuimos nenhum receita cadastrada no momento." if @recipes.empty? %>
+    </div>
+    <div class="row">
         <% @recipes.each do |recipe| %>
-            <div class="col">
+            <div class="mb-3 col col-lg-2">
                 <div class="card h-100">
-                    <img src=<%= ["https://cdn0.tudoreceitas.com/pt/posts/6/8/1/sobremesa_para_domingo_de_pascoa_9186_600.webp", 
-                    "https://cdn0.tudoreceitas.com/pt/posts/1/8/3/bolinho_de_arroz_sem_farinha_11381_600.webp", 
-                    "https://cdn0.tudoreceitas.com/pt/posts/9/9/7/panqueca_de_carne_moida_fit_10799_600.webp"].sample %> class="card-img-top"
-                    alt="" />
+                    <%= link_to recipe  do %>
+                        <img src=<%= ["https://cdn0.tudoreceitas.com/pt/posts/6/8/1/sobremesa_para_domingo_de_pascoa_9186_600.webp", 
+                        "https://cdn0.tudoreceitas.com/pt/posts/1/8/3/bolinho_de_arroz_sem_farinha_11381_600.webp", 
+                        "https://cdn0.tudoreceitas.com/pt/posts/9/9/7/panqueca_de_carne_moida_fit_10799_600.webp"].sample %> class="card-img-top"
+                        alt="" />
+                    <% end %>
+
                     <div class="card-body">
-                        <h5 class="card-title font-weight-bold"><%= recipe.name %></h5>
+                        <h5 class="card-title font-weight-bold">
+                            <%= recipe.name %>
+                        </h5>
                         <p class="card-text">
                             <%= recipe.body %>
                         </p>
                     </div>
+
+                    <!-- action buttons -->
                     <div class="card-footer">
                         <%= link_to recipe, {class: 'text-primary btn-sm text-decoration-none' }  do %>
-                            <i class="fa fa-eye" title="Ver detalhes"></i>VER
+                            VER
                         <% end %>
                         <%= link_to edit_recipe_path(recipe), {class: 'text-warning btn-sm text-decoration-none'} do %>
-                            <i class="fa fa-edit" title="Editar"></i>EDITAR
+                            EDITAR
                         <% end %>
                         <%= link_to "DELETAR", recipe_path(recipe), data: {
                             turbo_method: :delete,
