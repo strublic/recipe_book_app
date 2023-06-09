@@ -22,3 +22,8 @@
 }
 
  .flex-1 {flex:1;}
+
+ .btn-bottom {
+    position: absolute;
+    bottom: 0;
+ }

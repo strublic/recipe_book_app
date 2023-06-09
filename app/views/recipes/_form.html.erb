@@ -1,38 +1,60 @@
-<div class="d-flex justify-content-around bd-highlight">
-  <%= form_with(model: @recipe, data: {
-      controller: "nested-form",
-      nested_form_wrapper_selector_value: '.nested-form-wrapper'
-    }) do |form| %>
-    <div>
-      <%= form.label :name, style: "display: block" %>
-      <%= form.text_field :name %>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title"><%= @recipe.id.present? ? "Receita: #{@recipe.name}" : "Nova receita" %></h3>
+  </div>
+  <div class="card-body">
+    <%= form_with(model: @recipe, data: {
+        controller: "nested-form",
+        nested_form_wrapper_selector_value: '.nested-form-wrapper'
+      }) do |form| %>
+      
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="name">Nome da receita</label>
+          <%= form.text_field :name, class: "form-control", placeholder: "Nome da receita", required: :true %>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="body">Descrição</label>
+          <%= form.text_area :body, class: "form-control", placeholder: "Nome da receita", required: :true  %>
+        </div>
+      </div>
+
+      <!-- Ingredients form -->
+      <h5>Ingredientes</h5>
+
+      <div class="form-row">
+        <template data-nested-form-target="template">
+          <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
+            <%= render "ingredient_form", f: ingredient_fields %>
+          <% end %>
+        </template>
+
+        <%= form.fields_for :ingredients do |ingredient_fields| %>
+          <%= render "ingredient_form", f: ingredient_fields %>
+        <% end %>
+        <div data-nested-form-target="target"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <button type="button" data-action="nested-form#add">Add item</button>
+        </div>
+      </div>
+      <!-- end Ingredients form -->
+
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <%= form.submit %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <%= link_to "Voltar", root_path %>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <%= form.label :body, style: "display: block" %>
-      <%= form.text_area :body %>
-    </div>
-
-    <template data-nested-form-target="template">
-      <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
-        <%= render "ingredient_form", f: ingredient_fields %>
-      <% end %>
-    </template>
-
-    <%= form.fields_for :ingredients do |ingredient_fields| %>
-      <%= render "ingredient_form", f: ingredient_fields %>
     <% end %>
-
-    <div data-nested-form-target="target"></div>
-
-    <button type="button" data-action="nested-form#add">Add item</button>
-
-    <%#= f.submit 'Save tasks' %>
-
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-
+  </div>
 </div>
-<%= link_to "Voltar", root_path %>
