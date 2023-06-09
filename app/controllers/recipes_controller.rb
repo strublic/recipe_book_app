@@ -40,6 +40,18 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    recipe = "%#{params[:recipe]}%"
+    
+    if params[:recipe].present?
+      @recipes = Recipe.where("recipes.name LIKE ?", recipe).uniq
+    else
+      @recipes = Recipe.all.uniq
+    end
+
+    render :index
+  end
+
   private
   def set_recipe
       @recipe = Recipe.find(params[:id])
