@@ -1,20 +1,18 @@
 # README
 
-Sistema de receitas culinárias
+**Sistema de receitas culinárias**
 
-Things you may want to cover:
+Versões:
+* ruby "3.2.2"
+* rails "7.0.5"
+* Sqlite3 "1.4"
 
-* Versions
-ruby "3.2.2"
-rails "7.0.5"
-Sqlite3 "1.4"
+Considere realizar:
 
-Consider do:
+`bundle install`
 
-bundle install
+`rake db:migrate`
 
-rake db:migrate
+`rake db:seed`
 
-rake db:seed
 
-* ...
