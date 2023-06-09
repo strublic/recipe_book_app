@@ -24,16 +24,16 @@
       <h5>Ingredientes</h5>
 
       <div data-controller="nested-form" data-nested-form-wrapper-selector-value=".nested-form-wrapper">
-          <template data-nested-form-target="template">
-            <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
-              <%= render "ingredient_form", f: ingredient_fields %>
-            <% end %>
-          </template>
-
-          <%= form.fields_for :ingredients do |ingredient_fields| %>
+        <template data-nested-form-target="template">
+          <%= form.fields_for :ingredients, Ingredient.new, child_index: 'NEW_RECORD' do |ingredient_fields| %>
             <%= render "ingredient_form", f: ingredient_fields %>
           <% end %>
-          <div data-nested-form-target="target"></div>
+        </template>
+
+        <%= form.fields_for :ingredients do |ingredient_fields| %>
+          <%= render "ingredient_form", f: ingredient_fields %>
+        <% end %>
+        <div data-nested-form-target="target"></div>
 
         <div class="form-row">
           <div class="col-md-4 mb-3">
@@ -75,7 +75,6 @@
           <%= link_to "Voltar", root_path %>
         </div>
       </div>
-    </div>
     <% end %>
   </div>
 </div>

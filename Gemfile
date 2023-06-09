@@ -24,6 +24,12 @@ gem "bootsnap", require: false
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
+  gem "factory_bot_rails"
+end
+
+group :test do
+  gem "faker"
+  gem "shoulda-matchers", "~> 4.5"
 end
 
 group :development do
