@@ -9,18 +9,12 @@ ruby "3.2.2"
 rails "7.0.5"
 Sqlite3 "1.4"
 
-* System dependencies
+Considere do:
 
-* Configuration
+bundle install
 
-* Database creation
+rake db:migrate
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+rake db:seed
 
 * ...
