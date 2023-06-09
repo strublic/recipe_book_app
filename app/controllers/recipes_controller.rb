@@ -40,6 +40,23 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    recipe = "%#{params[:recipe]}%"
+    ingredient = "%#{params[:ingredient]}%"
+    
+    if params[:recipe].present? && params[:ingredient].present?
+      @recipes = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", ingredient).and(Recipe.where("recipes.name LIKE ?", recipe)).uniq
+    elsif params[:recipe].present?
+      @recipes = Recipe.where("recipes.name LIKE ?", recipe).uniq
+    elsif params[:ingredient].present?
+      @recipes = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", ingredient).uniq
+    else
+      @recipes = Recipe.all.uniq
+    end
+
+    render :index
+  end
+
   private
   def set_recipe
       @recipe = Recipe.find(params[:id])
