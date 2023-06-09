@@ -1,13 +1,5 @@
-<form action="/search">
-    <div>
-        <label for="recipe">Receita: </label>
-        <input type="text" name="recipe" id="recipe">
-    </div>
-    <div>
-        <label for="ingredient">Ingrediente: </label>
-        <input type="text" name="ingredient" id="ingredient">
-    </div>
-    <div>
-        <input type="submit" value="Pesquisar">
-    </div>
+<form action="/search" class="form-inline d-inline">
+    <input type="text" name="recipe" id="recipe" class="form-control mb-2 mr-sm-2" placeholder="Pesquise por Receita">
+    <input type="text" name="ingredient" id="ingredient" class="form-control mb-2 mr-sm-4" placeholder="Pesquise por Ingrediente">
+    <input type="submit" value="Pesquisar" class="btn btn-light mb-2 mr-sm-2">
 </form>

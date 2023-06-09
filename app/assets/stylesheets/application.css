@@ -27,3 +27,8 @@
     position: absolute;
     bottom: 0;
  }
+
+ .img-recipe{
+   height: 400px;
+   width: auto;
+ }

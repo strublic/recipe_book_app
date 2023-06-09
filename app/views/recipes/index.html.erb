@@ -17,10 +17,7 @@
             <div class="mb-3 col col-lg-2">
                 <div class="card h-100">
                     <%= link_to recipe  do %>
-                        <img src=<%= ["https://cdn0.tudoreceitas.com/pt/posts/6/8/1/sobremesa_para_domingo_de_pascoa_9186_600.webp", 
-                        "https://cdn0.tudoreceitas.com/pt/posts/1/8/3/bolinho_de_arroz_sem_farinha_11381_600.webp", 
-                        "https://cdn0.tudoreceitas.com/pt/posts/9/9/7/panqueca_de_carne_moida_fit_10799_600.webp"].sample %> class="card-img-top"
-                        alt="" />
+                        <%= image_tag "receita_tradicional", class:"card-img-top" %>
                     <% end %>
 
                     <div class="card-body">

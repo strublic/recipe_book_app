@@ -1,20 +1,42 @@
-<div>
-    <h1><%= @recipe.name %></h1>
-    <h3><%= @recipe.body %></h3>
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title"><%= "#{@recipe.name.upcase}" %></h1>
+    </div>
 
-    <h2>Ingredientes</h2>
-    <ul>
-        <% @recipe.ingredients.each do |item| %>
-            <li><%= item.measure %> <%= item.measure_type %>: <%= item.name %></li>
-        <% end %>
-    </ul>
+    <div class="card-body">        
+        <div class="row">
+            <%= image_tag "receita_tradicional", class:"img-recipe" %>
+            
+            <div class="col-md-12 mb-3">
+                <h5 class="card-title font-weight-bold">Descrição</h5>
+                <p><%= @recipe.body %></p>
 
-    <h2>Modo de preparo</h2>
-    <ul>
-        <% @recipe.method_steps.each do |item| %>
-            <li><%= item.step %></li>
-        <% end %>
-    </ul>
+            </div>
+        </div>
 
-    <%= link_to "Voltar", root_path %>
+        <!-- Ingredients form -->
+        <h5 class="card-title font-weight-bold">Ingredientes</h5>
+
+        <ul>
+            <% @recipe.ingredients.each do |item| %>
+                <li><%= item.measure %> <%= item.measure_type %>: <%= item.name %></li>
+            <% end %>
+        </ul>
+        <!-- end Ingredients form -->
+
+        <!-- Method Steps form -->
+        <h5 class="card-title font-weight-bold">Modo de Preparo</h5>
+        <ul>
+            <% @recipe.method_steps.each do |item| %>
+                <li><%= item.step %></li>
+            <% end %>
+        </ul>
+        <!-- end Method Steps -->
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <%= link_to "Voltar", root_path %>
+            </div>
+        </div>
+    </div>
 </div>
