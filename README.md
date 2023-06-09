@@ -9,7 +9,7 @@ ruby "3.2.2"
 rails "7.0.5"
 Sqlite3 "1.4"
 
-Considere do:
+Consider do:
 
 bundle install
 
