@@ -27,12 +27,12 @@ group :development, :test do
   gem "factory_bot_rails"
 end
 
+group :development do
+  gem "web-console"
+end
+
 group :test do
   gem "faker"
   gem "shoulda-matchers", "~> 4.5"
-end
-
-group :development do
-  gem "web-console"
 end
 
