@@ -54,5 +54,6 @@ puts 'Creating 10 Recipes ...'
             ),
         ]
     )
+end
 
 puts ">>> done"
